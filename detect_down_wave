@@ -1,1 +1,13 @@
-
+module detect_up_wave(
+input sig_a);
+reg sig_a_reg;
+wire sig_a_posedge;
+reg areset;
+always @( posedge clk or posedge areset )
+if(areset)
+  sig_a_reg<=1'b0;
+     else
+        begin
+        sig_a_reg<=sig_a;
+        end
+assign sig_a_posedge=sig_a&!sig_a_posedge;
